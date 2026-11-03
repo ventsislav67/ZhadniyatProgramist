@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>ZhadniyatProgramist</RootNamespace>
+    <AssemblyName>ZhadniyatProgramist</AssemblyName>
+    <AssemblyTitle>Кръчма „Жадният Програмист“</AssemblyTitle>
+    <Product>Кръчма „Жадният Програмист“</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Лек, вграден SQL двигател – не изисква инсталация на SQL Server -->
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- SQL скриптът се копира до .exe файла за справка / ръчно изпълнение -->
+    <None Update="SQL\create_database.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Изображенията на бай Пешо се копират до .exe файла.
+         Ако липсват, приложението НЕ крашва – PeshoCharacterControl
+         рисува персонажа с GDI+ като fallback. -->
+    <None Update="Assets\Pesho\*.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
